@@ -3,65 +3,75 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>電通大生専用マッチングアプリ</title>
+    <title>農工大生専用マッチングアプリ</title>
 
     <meta
       name="description"
-      content="電通大生による、電通大生のためのマッチングアプリ"
+      content="農工大生による、農工大生のためのマッチングアプリ"
     />
 
-    <meta property="og:title" content="電通大生専用マッチングアプリ" />
+    <meta property="og:title" content="農工大生専用マッチングアプリ" />
     <meta
       property="og:description"
-      content="電通大生による、電通大生のためのマッチングアプリ"
+      content="農工大生による、農工大生のためのマッチングアプリ"
     />
     <meta
       property="og:url"
-      content="https://uec-matching.mimifuwacc.workers.dev/"
+      content="https://delphyilia.github.io/TUAT_matching/"
     />
     <meta
       property="og:image"
-      content="https://uec-matching.mimifuwacc.workers.dev/og.png"
+      content="https://delphyilia.github.io/TUAT_matching/top.png"
     />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="電通大生専用マッチングアプリ" />
+    <meta property="og:site_name" content="農工大生専用マッチングアプリ" />
 
-    <meta name="twitter:title" content="電通大生専用マッチングアプリ" />
+    <meta name="twitter:title" content="農工大生専用マッチングアプリ" />
     <meta
       name="twitter:description"
-      content="電通大生による、電通大生のためのマッチングアプリ"
+      content="農工大生による、農工大生のためのマッチングアプリ"
     />
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:image"
-      content="https://uec-matching.mimifuwacc.workers.dev/og.png"
+      content="https://delphyilia.github.io/TUAT_matching/top.png"
     />
+
+      <link rel="stylesheet" href="style.css">
   </head>
-  <body>
-    <header>
-      <h1>電通大生専用マッチングアプリ</h1>
-    </header>
-    <main>
-      <section id="question">
-        <p>あなたは電通大生ですか？</p>
-        <button id="yes">はい</button>
-        <button id="no">いいえ</button>
-      </section>
-      <section id="retry" style="display: none">
-        <button id="retry">再マッチング</button>
-        <button id="restart">最初からやり直す</button>
-      </section>
-      <section id="result" style="display: none">
-        <p id="result-text"></p>
-      </section>
-    </main>
 
-    <hr />
 
-    <footer>
+<body>
+
+<div class="flex">
+    <h2>農工大生マッチング</h2>
+    <div id="hakken"></div>
+    <div id="kouken"></div>
+</div>
+
+<hr class="blue-line">
+
+<div>
+    <button id="mbti">MBTI診断を開始</button>
+    <div id="mbti_container"></div>
+    <div id="mbti_result"></div>
+</div>
+
+<div id="question_box">
+    あなたは農工大生ですか？ <br>
+    <button id="question_yes">はい</button>
+    <button id="question_no">いいえ</button>
+</div>
+
+
+
+<hr />
+
+<footer>
       <p>
         inspired by
         <a href="https://hutinoatari.github.io/cheapTransfer/">最安経路検索</a>
+        <a href="https://uec-matching.mimifuwacc.workers.dev/">電通大生専用マッチングアプリ</a>
       </p>
 
       <p>
@@ -69,69 +79,10 @@
         <script>
           document.write(new Date().getFullYear());
         </script>
-        mimifuwacc
+        Delphyilia
       </p>
-    </footer>
+</footer>
 
-    <script>
-      const questionSection = document.querySelector("#question");
-      const yesButton = questionSection.querySelector("#yes");
-      const noButton = questionSection.querySelector("#no");
 
-      const retrySection = document.querySelector("#retry");
-      const retryButton = retrySection.querySelector("#retry");
-      const restartButton = retrySection.querySelector("#restart");
-
-      const resultSection = document.querySelector("#result");
-      const resultText = resultSection.querySelector("#result-text");
-
-      const match = async () => {
-        questionSection.style.display = "none";
-        resultSection.style.display = "block";
-        console.log(resultSection);
-        resultText.textContent = "マッチング中";
-
-        await new Promise((resolve) => {
-          for (let i = 0; i < 5; i++) {
-            setTimeout(
-              () => {
-                resultText.textContent += ".";
-                if (i === 4) resolve();
-              },
-              (i + 1) * 500,
-            );
-          }
-        });
-
-        retrySection.style.display = "block";
-
-        resultText.textContent = "あなたにマッチする人は見つかりませんでした";
-      };
-
-      yesButton.addEventListener("click", async () => {
-        await match();
-      });
-
-      noButton.addEventListener("click", () => {
-        questionSection.style.display = "none";
-
-        retrySection.style.display = "block";
-        retryButton.style.display = "none";
-        restartButton.style.display = "inline-block";
-
-        resultSection.style.display = "block";
-        resultText.textContent = "電通大生以外は利用することができません";
-      });
-
-      retryButton.addEventListener("click", async () => {
-        await match();
-      });
-
-      restartButton.addEventListener("click", () => {
-        retrySection.style.display = "none";
-        resultSection.style.display = "none";
-        questionSection.style.display = "block";
-      });
-    </script>
-  </body>
-</html>
+<script src="script.js"></script>
+</body>
